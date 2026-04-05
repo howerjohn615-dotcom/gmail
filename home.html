@@ -216,26 +216,29 @@
     </div>
 </div>
 
-<!-- optional micro interaction: console greeting, no functional change required -->
+<!-- Fixed navigation: removed preventDefault so links work normally -->
 <script>
-    // subtle console greeting to show enhancement – adds polish but not intrusive
+    // This script now only adds visual feedback WITHOUT blocking navigation
     (function() {
         const options = document.querySelectorAll('.option');
         options.forEach(opt => {
             opt.addEventListener('click', (e) => {
-                // prevent actual navigation for demo experience (since # is used)
-                e.preventDefault();
-                const provider = opt.querySelector('span:last-child')?.innerText || 'provider';
-                // gentle visual feedback
-                opt.style.transition = '0.1s';
+                // Get provider name for console logging only (navigation proceeds normally)
+                const providerSpan = opt.querySelector('span:last-child');
+                const provider = providerSpan ? providerSpan.innerText : 'provider';
+                
+                // Visual feedback only - does NOT prevent navigation
+                opt.style.transition = 'background 0.1s ease';
                 opt.style.backgroundColor = '#f0f7ff';
+                
+                // Reset background after a short delay
                 setTimeout(() => {
                     opt.style.backgroundColor = '';
                 }, 120);
-                // optional: show demo message (not required but adds informative touch)
-                console.log(`✨ Demo: ${provider} authentication flow would open. Icons enhanced.`);
-                // could add alert for demonstration but not needed, just to show interactive
-                // keeping UX smooth
+                
+                // Just log to console for demo purposes - navigation happens automatically
+                console.log(`✨ Navigating to: ${provider} (${opt.getAttribute('href')})`);
+                // No e.preventDefault() - links will work normally!
             });
         });
     })();
